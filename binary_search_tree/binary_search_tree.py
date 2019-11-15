@@ -21,7 +21,6 @@ class Queue:
         return self.size
 
 
-queue = Queue()
 
 
 class BinarySearchTree:
@@ -82,7 +81,19 @@ class BinarySearchTree:
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        queue = Queue()
+        if self.left is not None:
+          queue.enqueue(self.left)
+        if self.right is not None:
+          queue.enqueue(self.right)
+        while(queue.len() > 0):
+          node_to_eval = queue.dequeue()
+          cb(node_to_eval.value)
+          if node_to_eval.left is not None:
+            queue.enqueue(node_to_eval.left)
+          if node_to_eval.right is not None:
+            queue.enqueue(node_to_eval.right)
 
     # DAY 2 Project -----------------------
 
